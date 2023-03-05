@@ -26,7 +26,7 @@ def main():
         number = int(input().strip())
         parentsl= map(int, number)
         plist=list(parentsl)
-    elif input == 'F' 
+    elif input == 'F':
         filename = input().strip()
         with open(filename,'r') as f:
             num_nodes = int(f.readline().strip())
