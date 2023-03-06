@@ -51,12 +51,14 @@ def main():
             print("Nepareiza faila nosaukums. Faila nosaukumā nedrīkst būt burts 'a'.")
             return
         try:
-            with open(file, "r") as f:
-                n = int(f.readline().strip())
-                vecaki = f.readline().strip().split()
-                parents = [int(x) for x in vecaki]
-                result = compute_height(n, parents)
-                print(result)
+            path = input()
+            file = open("./test/"+path,mode="r")
+            lines = file.readlines()
+            n = int(lines[0])
+            parents = lines[1].split()
+            parents = [int(x) for x in parents]
+            result = compute_height(n, parents)
+            print(result)
         except FileNotFoundError as e:
             print(e)
     else:
