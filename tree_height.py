@@ -3,10 +3,7 @@
 import sys
 import threading
 
-
-def compute_height(n, parents, augstums):
-    # Write this function
-    # Your code here
+def compute_height(n, parents):
     path_lengths = [0] * n
     visited = [False] * n
 
@@ -29,34 +26,35 @@ def compute_height(n, parents, augstums):
                         path_lengths[n] += path_lengths[current]
                     break
 
-    max_lenght = 0
+    max = 0
     for l in path_lengths:
-        if l > max_lenght:
+        if l > max:
             max = l 
 
     return max
 
 
 def main():
-    inp = input().strip()
-    if inp.lower() == "I":
-        n = int(input().strip())
-        input_parents = input().strip().split()
-        parents = [int(x) for x in input_parents]
+    ievade = input("").strip()
+    if "i" == ievade.lower() :
+        n = int(input("").strip())
+        vecaki = input("").strip().split()
+        parents = [int(x) for x in vecaki]
         result = compute_height(n, parents)
         print(result)
-    elif inp.lower() == "F":
-        file = input().strip()
-        if not "a" in file.lower():
-            with open(file, "r") as f:
-                n = int(f.readline().strip())
-                input_parents = f.readline().strip().split()
-                parents = [int(x) for x in input_parents]
-                result = compute_height(n, parents)
-                print(result)
+    elif "f" == ievade.lower() :
+        file = input("").strip()
+        if "a" in file.lower():
+            print("Nepareiza faila nosaukums. Faila nosaukumā nedrīkst būt burts 'a'.")
+            return
+        with open(file, "r") as f:
+            n = int(f.readline().strip())
+            vecaki = f.readline().strip().split()
+            parents = [int(x) for x in vecaki]
+            result = compute_height(n, parents)
+            print(result)
     else:
         print("nepareizi")
-
 
 if __name__ == '_main_':
     sys.setrecursionlimit(10**7)
