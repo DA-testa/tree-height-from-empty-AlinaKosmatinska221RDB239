@@ -55,7 +55,7 @@ def main():
                 result = compute_height(n, parents)
                 print(result)
     else:
-        print("incorrect input")
+        print("nepareizi")
 
 
 if __name__ == '_main_':
