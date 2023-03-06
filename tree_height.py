@@ -58,7 +58,7 @@ def main():
                 result = compute_height(n, parents)
                 print(result)
         except FileNotFoundError:
-            print("file does not exist")
+            print("file with name", file, "does not exist")
     else:
         print("nepareizi")
 
