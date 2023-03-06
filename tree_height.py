@@ -57,8 +57,8 @@ def main():
                 parents = [int(x) for x in vecaki]
                 result = compute_height(n, parents)
                 print(result)
-        except FileNotFoundError:
-            print("file with name", file, "does not exist")
+        except FileNotFoundError as e:
+            print(e)
     else:
         print("nepareizi")
 
