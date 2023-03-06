@@ -2,32 +2,70 @@
 
 import sys
 import threading
-import numpy
-
 
 def compute_height(n, parents):
-    # Write this function
-    max_height = 0
-    # Your code here
-    return max_height
+    path_lengths = [0] * n
+    visited = [False] * n
+
+    for node in range(n):
+        if not visited[node]:
+            visited[node] = True
+            path_lengths[node] += 1
+            previous = [node]
+            current = parents[node]
+            while current != -1:
+                parent = parents[current]
+                if not visited[current]:
+                    previous.append(current)
+                    for n in previous:
+                        path_lengths[n] += 1
+                    visited[current] = True
+                    current = parent
+                else:
+                    for n in previous:
+                        path_lengths[n] += path_lengths[current]
+                    break
+
+    max = 0
+    for l in path_lengths:
+        if l > max:
+            max = l 
+
+    return max
 
 
 def main():
-    # implement input form keyboard and from files
-    
-    # let user input file name to use, don't allow file names with letter a
-    # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-    # call the function and output it's result
-    pass
+    ievade = input("").strip()
+    if "i" == ievade.lower() :
+        n = int(input("").strip())
+        vecaki = input("").strip().split()
+        parents = [int(x) for x in vecaki]
+        try:
+            result = compute_height(n, parents)
+            print(result)
+        except IndexError:
+            print("incorrect input")
+    elif "f" == ievade.lower() :
+        file = input("").strip()
+        if "a" in file.lower():
+            print("Nepareiza faila nosaukums. Faila nosaukumā nedrīkst būt burts 'a'.")
+            return
+        try:
+            file = open("./test/" + file, mode="r")
+            lines = file.readlines()
+            n = int(lines[0])
+            parents = lines[1].split()
+            parents = [int(x) for x in parents]
+            result = compute_height(n, parents)
+            print(result)
+        except FileNotFoundError as e:
+            print(e)
+    else:
+        print("nepareizi")
 
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
-sys.setrecursionlimit(10**7)  # max depth of recursion
-threading.stack_size(2**27)   # new thread will get stack of such size
-threading.Thread(target=main).start()
+if __name__ == '_main_':
+    sys.setrecursionlimit(10**7)
+    threading.stack_size(2**27)
+    thread = threading.Thread(target=main)
+    thread.start()
 main()
-# print(numpy.array([1,2,3]))
