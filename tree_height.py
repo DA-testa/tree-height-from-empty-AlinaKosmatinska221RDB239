@@ -40,19 +40,25 @@ def main():
         n = int(input("").strip())
         vecaki = input("").strip().split()
         parents = [int(x) for x in vecaki]
-        result = compute_height(n, parents)
-        print(result)
+        try:
+            result = compute_height(n, parents)
+            print(result)
+        except IndexError:
+            print("incorrect input")
     elif "f" == ievade.lower() :
         file = input("").strip()
         if "a" in file.lower():
             print("Nepareiza faila nosaukums. Faila nosaukumā nedrīkst būt burts 'a'.")
             return
-        with open(file, "r") as f:
-            n = int(f.readline().strip())
-            vecaki = f.readline().strip().split()
-            parents = [int(x) for x in vecaki]
-            result = compute_height(n, parents)
-            print(result)
+        try:
+            with open(file, "r") as f:
+                n = int(f.readline().strip())
+                vecaki = f.readline().strip().split()
+                parents = [int(x) for x in vecaki]
+                result = compute_height(n, parents)
+                print(result)
+        except FileNotFoundError:
+            print("file does not exist")
     else:
         print("nepareizi")
 
