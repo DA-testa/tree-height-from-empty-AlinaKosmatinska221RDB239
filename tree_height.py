@@ -51,8 +51,7 @@ def main():
             print("Nepareiza faila nosaukums. Faila nosaukumā nedrīkst būt burts 'a'.")
             return
         try:
-            path = input()
-            file = open("./test/"+path,mode="r")
+            file = open("./test/" + file, mode="r")
             lines = file.readlines()
             n = int(lines[0])
             parents = lines[1].split()
